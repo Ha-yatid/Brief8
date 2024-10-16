@@ -7,9 +7,9 @@ import AddUserModal from '../components/ModalAddUser';
 
 const Home = () => {
   const [users, setUsers] = useState([
-    { id: 1, name: 'Alice', age: 25, haveAccess: true },
-    { id: 2, name: 'Bob', age: 30, haveAccess: false },
-    { id: 3, name: 'Charlie', age: 28, haveAccess: true },
+    { id: 1, name: 'HY', age: 23, haveAccess: true },
+    { id: 2, name: 'AY', age: 24, haveAccess: false },
+    { id: 3, name: 'ZAK', age: 18, haveAccess: true },
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState(false); 

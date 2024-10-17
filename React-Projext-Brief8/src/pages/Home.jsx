@@ -16,6 +16,8 @@ const Home = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
 
+  const [searchTerm, setSearchTerm] = useState('');
+
   const handleDelete = (userId) => {
     setUsers(users.filter(user => user.id !== userId));
   };
@@ -41,6 +43,15 @@ const Home = () => {
   const handleCloseAddUserModal = () => {
     setIsAddUserModalOpen(false);
   };
+  const filteredUsers = searchTerm
+    ? users.filter(user =>
+        user.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : users; 
+  
+  const handleShowAllUsers = () => {
+    setSearchTerm('');
+  };
 
   return (
     <div className="p-4">
@@ -52,8 +63,21 @@ const Home = () => {
       >
         <PlusIcon className="h-5 w-5 mr-2" /> Ajouter un utilisateur
       </button>
-      <UserTable data={users} handleDelete={handleDelete} handleViewDetails={handleViewDetails} />
+      <div className="flex mb-4">
+        <input 
+          type="text" 
+          placeholder="Search by name..." 
+          className="p-2 border rounded flex-grow"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // Mise à jour du terme de recherche
+        />
+        <button onClick={handleShowAllUsers} className="ml-2 p-2 bg-blue-500 text-white rounded">Afficher tous
+        </button>
+      </div>
 
+      <UserTable data={filteredUsers} handleDelete={handleDelete} handleViewDetails={handleViewDetails} />
+
+      
       {isModalOpen && selectedUser && (
         <Modal user={selectedUser} onClose={handleCloseModal} />
       )}

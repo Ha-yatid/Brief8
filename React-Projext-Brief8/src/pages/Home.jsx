@@ -69,7 +69,7 @@ const Home = () => {
           placeholder="Search by name..." 
           className="p-2 border rounded flex-grow"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)} // Mise à jour du terme de recherche
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
         <button onClick={handleShowAllUsers} className="ml-2 p-2 bg-blue-500 text-white rounded">Afficher tous
         </button>
